@@ -1,0 +1,45 @@
+{
+  "documentos": [
+    {
+      "id": 1,
+      "titulo": "Guía de Trámites Administrativos",
+      "descripcion": "Documento con los trámites principales y documentos requeridos",
+      "fecha": "2026-02-10",
+      "url": "#",
+      "tipo": "PDF"
+    },
+    {
+      "id": 2,
+      "titulo": "Normativa de Seguridad y Salud",
+      "descripcion": "Reglamentación para la seguridad en el centro",
+      "fecha": "2026-02-05",
+      "url": "#",
+      "tipo": "PDF"
+    }
+  ],
+  "profesionales": [
+    {
+      "id": 1,
+      "nombre": "Dr. Juan García López",
+      "especialidad": "Medicina General",
+      "horario": "Lunes a Viernes: 9:00 - 14:00",
+      "email": "juan.garcia@cartagenaeste.es"
+    }
+  ],
+  "pacientes": [
+    {
+      "titulo": "Cita Médica Online",
+      "descripcion": "Solicita tu cita médica a través de nuestro portal online",
+      "icon": "📅"
+    }
+  ],
+  "anuncios": [
+    {
+      "id": 1,
+      "titulo": "¡Nuevo servicio de Telemedicina!",
+      "contenido": "Ya está disponible nuestro servicio de consultas por videollamada",
+      "fecha": "2026-02-16",
+      "urgencia": "normal"
+    }
+  ]
+}
