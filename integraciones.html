@@ -489,14 +489,19 @@
             
             let html = `
                 <p style="margin-bottom: 20px; color: #666;">
-                    📂 Accede a todos los recursos de esta categoría en Google Drive:
+                    📚 Recursos disponibles para esta categoría:
                 </p>
             `;
             
             html += `
-                <a href="${driveUrl}" target="_blank" class="drive-link-btn">
-                    📁 Abrir carpeta en Google Drive
-                </a>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <a href="notebook.html?category=${encodeURIComponent(catName)}" class="drive-link-btn" style="background: #0066cc; text-align: center;">
+                        📓 Abrir Cuaderno Digital
+                    </a>
+                    <a href="${driveUrl}" target="_blank" class="drive-link-btn" style="background: #28a745;">
+                        📁 Ver en Google Drive
+                    </a>
+                </div>
             `;
             
             body.innerHTML = html;
