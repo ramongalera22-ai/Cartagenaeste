@@ -34,6 +34,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .header-title {
@@ -135,13 +137,19 @@
             transform: translateX(5px);
         }
 
-        .category-item a {
-            text-decoration: none;
+        .category-item button {
+            background: none;
+            border: none;
             color: #0066cc;
-            transition: color 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            text-align: left;
+            padding: 0;
         }
 
-        .category-item a:hover {
+        .category-item button:hover {
             color: #004499;
             text-decoration: underline;
         }
@@ -263,6 +271,22 @@
             color: #0066cc;
         }
 
+        .files-list {
+            margin: 20px 0;
+        }
+
+        .file-item {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 8px 0;
+            border-radius: 4px;
+            border-left: 3px solid #0066cc;
+        }
+
+        .file-item strong {
+            color: #333;
+        }
+
         .drive-link-btn {
             display: inline-block;
             margin-top: 20px;
@@ -280,6 +304,13 @@
 
         .drive-link-btn:hover {
             background: #218838;
+        }
+
+        .empty-files {
+            color: #999;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -308,11 +339,11 @@
             <h2>Un Archivo de Docencia para la Práctica Clínica</h2>
             
             <p class="content-intro">
-                Hemos creado este blog con un objetivo claro: construir un archivo digital, accesible y práctico, con los recursos y el conocimiento que generamos durante nuestra práctica clínica y las sesiones clínicas en el Centro de Salud. Durante la residencia y en la práctica clínica posterior, manejamos una cantidad enorme de información: guías, protocolos, artículos y casos que son de utilidad inmediata. Mi intención es centralizar aquí mis conocimientos para que sirva como herramienta de consulta rápida y de formación continuada para todos nosotros.
+                Hemos creado este archivo con un objetivo claro: construir un repositorio digital, accesible y práctico, con los recursos y el conocimiento que generamos durante nuestra práctica clínica y las sesiones clínicas en el Centro de Salud. Durante la residencia y en la práctica clínica posterior, manejamos una cantidad enorme de información: guías, protocolos, artículos y casos que son de utilidad inmediata. Nuestro propósito es centralizar aquí el conocimiento para que sirva como herramienta de consulta rápida y de formación continuada para todos nosotros.
             </p>
 
             <div class="categories-section">
-                <h3>📚 Categorías Médicas Disponibles</h3>
+                <h3>📚 Recursos Médicos - Acceso a Google Drive</h3>
                 <div class="categories-list" id="categoriesList">
                     <!-- Generado dinámicamente -->
                 </div>
@@ -344,67 +375,83 @@
 
     <script>
         const categories = {
-            "Anestesia": { icon: "💊", drives: ["https://drive.google.com/drive/folders/1A1"] },
-            "Artículos": { icon: "📄", drives: ["https://drive.google.com/drive/folders/1A2"] },
-            "Casos Clínicos": { icon: "🏥", drives: ["https://drive.google.com/drive/folders/1A3"] },
-            "Cardiología": { icon: "❤️", drives: ["https://drive.google.com/drive/folders/1A4"] },
-            "Casos Clínicos": { icon: "📋", drives: ["https://drive.google.com/drive/folders/1A5"] },
-            "Cistitis": { icon: "🔬", drives: ["https://drive.google.com/drive/folders/1A6"] },
-            "Clínica": { icon: "⚕️", drives: ["https://drive.google.com/drive/folders/1A7"] },
-            "Comorbilidad": { icon: "🩺", drives: ["https://drive.google.com/drive/folders/1A8"] },
-            "Competencia": { icon: "🎓", drives: ["https://drive.google.com/drive/folders/1A9"] },
-            "COVID-19": { icon: "🦠", drives: ["https://drive.google.com/drive/folders/1A10"] },
-            "Crisis": { icon: "🚨", drives: ["https://drive.google.com/drive/folders/1A11"] },
-            "dentista": { icon: "🦷", drives: ["https://drive.google.com/drive/folders/1A12"] },
-            "Dermatología": { icon: "🩹", drives: ["https://drive.google.com/drive/folders/1A13"] },
-            "Diabetes": { icon: "🍬", drives: ["https://drive.google.com/drive/folders/1A14"] },
-            "Digestivo": { icon: "🫁", drives: ["https://drive.google.com/drive/folders/1A15"] },
-            "Neumología": { icon: "💨", drives: ["https://drive.google.com/drive/folders/1A16"] },
-            "Endocrinología": { icon: "🧬", drives: ["https://drive.google.com/drive/folders/1A17"] },
-            "Enfermería": { icon: "🏥", drives: ["https://drive.google.com/drive/folders/1A18"] },
-            "Enfermedades infecciosas": { icon: "🦠", drives: ["https://drive.google.com/drive/folders/1A19"] },
-            "Esofagitis": { icon: "🔥", drives: ["https://drive.google.com/drive/folders/1A20"] },
-            "Especiales": { icon: "⭐", drives: ["https://drive.google.com/drive/folders/1A21"] },
-            "Espíritu": { icon: "✨", drives: ["https://drive.google.com/drive/folders/1A22"] },
-            "Estrés": { icon: "😰", drives: ["https://drive.google.com/drive/folders/1A23"] },
-            "Exámenes": { icon: "📝", drives: ["https://drive.google.com/drive/folders/1A24"] },
-            "Fármacos": { icon: "💊", drives: ["https://drive.google.com/drive/folders/1A25"] },
-            "Formación": { icon: "🎓", drives: ["https://drive.google.com/drive/folders/1A26"] },
-            "Fórmulas Cosméticas": { icon: "💄", drives: ["https://drive.google.com/drive/folders/1A27"] },
-            "Funciones digestivas": { icon: "🫁", drives: ["https://drive.google.com/drive/folders/1A28"] },
-            "Gastroenterología": { icon: "🍽️", drives: ["https://drive.google.com/drive/folders/1A29"] },
-            "Geriatría": { icon: "👴", drives: ["https://drive.google.com/drive/folders/1A30"] },
-            "Ginecología": { icon: "🤰", drives: ["https://drive.google.com/drive/folders/1A31"] },
-            "Glotis": { icon: "🗣️", drives: ["https://drive.google.com/drive/folders/1A32"] },
-            "Guías de práctica": { icon: "📖", drives: ["https://drive.google.com/drive/folders/1A33"] },
-            "Hábitos de recomendaciones": { icon: "✅", drives: ["https://drive.google.com/drive/folders/1A34"] },
-            "Indicaciones clínicas": { icon: "🎯", drives: ["https://drive.google.com/drive/folders/1A35"] },
-            "Infecciones": { icon: "🔴", drives: ["https://drive.google.com/drive/folders/1A36"] },
-            "Información": { icon: "ℹ️", drives: ["https://drive.google.com/drive/folders/1A37"] },
-            "Inmunología": { icon: "🛡️", drives: ["https://drive.google.com/drive/folders/1A38"] },
-            "Instrumental": { icon: "🔧", drives: ["https://drive.google.com/drive/folders/1A39"] },
-            "Medicina": { icon: "⚕️", drives: ["https://drive.google.com/drive/folders/1A40"] },
-            "Menopausia": { icon: "⏳", drives: ["https://drive.google.com/drive/folders/1A41"] },
-            "Métodos": { icon: "🔬", drives: ["https://drive.google.com/drive/folders/1A42"] },
-            "Neurología": { icon: "🧠", drives: ["https://drive.google.com/drive/folders/1A43"] },
-            "Nutrición": { icon: "🥗", drives: ["https://drive.google.com/drive/folders/1A44"] },
-            "Oftalmología": { icon: "👁️", drives: ["https://drive.google.com/drive/folders/1A45"] },
-            "Oncología": { icon: "🎗️", drives: ["https://drive.google.com/drive/folders/1A46"] },
-            "Otorrinolaringología": { icon: "👂", drives: ["https://drive.google.com/drive/folders/1A47"] },
-            "Patología": { icon: "🔬", drives: ["https://drive.google.com/drive/folders/1A48"] },
-            "Pediatría": { icon: "👶", drives: ["https://drive.google.com/drive/folders/1A49"] },
-            "Podcast": { icon: "🎙️", drives: ["https://drive.google.com/drive/folders/1A50"] },
-            "Podcast del Centro": { icon: "🎧", drives: ["https://drive.google.com/drive/folders/1A51"] },
-            "Protocolos": { icon: "📋", drives: ["https://drive.google.com/drive/folders/1A52"] },
-            "Psicología": { icon: "🧠", drives: ["https://drive.google.com/drive/folders/1A53"] },
-            "Recursos": { icon: "💾", drives: ["https://drive.google.com/drive/folders/1A54"] },
-            "Recursos sociales": { icon: "🤝", drives: ["https://drive.google.com/drive/folders/1A55"] },
-            "Reseñas": { icon: "⭐", drives: ["https://drive.google.com/drive/folders/1A56"] },
-            "Salud Mental": { icon: "💭", drives: ["https://drive.google.com/drive/folders/1A57"] },
-            "Traumatología": { icon: "🦴", drives: ["https://drive.google.com/drive/folders/1A58"] },
-            "Urgencias": { icon: "🚨", drives: ["https://drive.google.com/drive/folders/1A59"] },
-            "Urología": { icon: "🔬", drives: ["https://drive.google.com/drive/folders/1A60"] },
-            "Violencia de Género": { icon: "🚫", drives: ["https://drive.google.com/drive/folders/1A61"] }
+            // PROFESIONALES
+            "Cardiología": {
+                icon: "❤️",
+                driveId: "14lhUUrY8AEuHkh_DfRzR91q6Qvv1s2aF",
+                section: "PROFESIONALES"
+            },
+            "Dermatología": {
+                icon: "🩹",
+                driveId: "1Cy0aVyWYy3aiIz08ieVNzp4wfLXlele1",
+                section: "PROFESIONALES"
+            },
+            "Digestivo": {
+                icon: "🫁",
+                driveId: "1vZov17ySOB6utqEUO7lve8sZ8DPJI6cL",
+                section: "PROFESIONALES"
+            },
+            "Endocrinología": {
+                icon: "🧬",
+                driveId: "1oK9pLhTuMW3V6AE19VZKsdpdcgUn4S04",
+                section: "PROFESIONALES"
+            },
+            "Geriatría": {
+                icon: "👴",
+                driveId: "18I_nkhfeNCBl3MBRZPJb7N2ln-qaINQb",
+                section: "PROFESIONALES"
+            },
+            "Ginecología": {
+                icon: "🤰",
+                driveId: "1nnRb5AhieStNv_4Z5e2lm55JoBdn-6kp",
+                section: "PROFESIONALES"
+            },
+            "Neurología": {
+                icon: "🧠",
+                driveId: "1HGMonqxxFpN7RYTcB5RC65AbGNmZn0sR",
+                section: "PROFESIONALES"
+            },
+            "Neumología": {
+                icon: "💨",
+                driveId: "1NCHsfTTxBSVzbbLqi_c9iI33xKVhacFu",
+                section: "PROFESIONALES"
+            },
+            "Pediatría": {
+                icon: "👶",
+                driveId: "1SUXQuRwuQooqdHZFRacSRK7inG7JRKwy",
+                section: "PROFESIONALES"
+            },
+            "Traumatología": {
+                icon: "🦴",
+                driveId: "1AiCxlDFPMdXLh8yFcpVHjspz_uTK506A",
+                section: "PROFESIONALES"
+            },
+            "Urgencias": {
+                icon: "🚨",
+                driveId: "1F1Ghfvny1xcxmsOHyQEBeJa0-q6gZTHc",
+                section: "PROFESIONALES"
+            },
+            "Protocolos Médicos": {
+                icon: "📋",
+                driveId: "1P6ZpthCguIV2sx1arcqgHCWYfnrpgoJs",
+                section: "PROFESIONALES"
+            },
+            "Formación": {
+                icon: "🎓",
+                driveId: "1EPwqQ9s_h8zUeQOUZA-L0uuGb9DKhbp7",
+                section: "PROFESIONALES"
+            },
+            // PACIENTES
+            "Violencia de Género": {
+                icon: "🚫",
+                driveId: "1dIQcvXXD0ezJCivtejXZwLkKz3Yz0Tm5",
+                section: "PACIENTES"
+            },
+            "Dietas y Nutrición": {
+                icon: "🥗",
+                driveId: "1-z1Y9Z0bNPCh1_EndigVbCrFDllEJqG5",
+                section: "PACIENTES"
+            }
         };
 
         function renderCategories() {
@@ -414,11 +461,12 @@
             sorted.forEach(cat => {
                 const item = document.createElement('div');
                 item.className = 'category-item';
+                const data = categories[cat];
                 item.innerHTML = `
-                    <a href="#" onclick="openCategory('${cat}'); return false;">
-                        ${categories[cat].icon} ${cat}
-                    </a>
-                    <span class="category-count">(${Math.floor(Math.random() * 20) + 1})</span>
+                    <button onclick="openCategory('${cat}')">
+                        ${data.icon} ${cat}
+                    </button>
+                    <span class="category-count">(📂 Drive)</span>
                 `;
                 container.appendChild(item);
             });
@@ -430,19 +478,21 @@
             const body = document.getElementById('modalBody');
             
             const cat = categories[catName];
+            const driveUrl = `https://drive.google.com/drive/folders/${cat.driveId}`;
+            
             title.textContent = `${cat.icon} ${catName}`;
             
-            let html = `<p style="margin-bottom: 20px; color: #666;">
-                Accede a todos los recursos de esta categoría en Google Drive:
-            </p>`;
+            let html = `
+                <p style="margin-bottom: 20px; color: #666;">
+                    📂 Accede a todos los recursos de esta categoría en Google Drive:
+                </p>
+            `;
             
-            cat.drives.forEach(drive => {
-                html += `
-                    <a href="${drive}" target="_blank" class="drive-link-btn">
-                        📁 Abrir en Google Drive
-                    </a>
-                `;
-            });
+            html += `
+                <a href="${driveUrl}" target="_blank" class="drive-link-btn">
+                    📁 Abrir carpeta en Google Drive
+                </a>
+            `;
             
             body.innerHTML = html;
             modal.style.display = 'block';
