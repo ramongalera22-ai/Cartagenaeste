@@ -335,118 +335,77 @@
             "Cardiología": {
                 icon: "❤️",
                 driveLink: "https://drive.google.com/drive/folders/14lhUUrY8AEuHkh_DfRzR91q6Qvv1s2aF",
-                archivos: [
-                    "HTA - Manejo en AP",
-                    "Insuficiencia Cardíaca - Guía",
-                    "Cardiopatía Isquémica"
-                ]
+                archivos: []  // Vacía - acceder a carpeta completa
             },
             "Dermatología": {
                 icon: "🩺",
                 driveLink: "https://drive.google.com/drive/folders/1Cy0aVyWYy3aiIz08ieVNzp4wfLXlele1",
-                archivos: [
-                    "Dermatitis Atópica",
-                    "Psoriasis - Tratamiento",
-                    "Infecciones Fúngicas"
-                ]
+                archivos: []
             },
             "Digestivo": {
                 icon: "🫁",
                 driveLink: "https://drive.google.com/drive/folders/1vZov17ySOB6utqEUO7lve8sZ8DPJI6cL",
-                archivos: [
-                    "ERGE - Reflujo",
-                    "SII - Síndrome Intestino Irritable",
-                    "Hepatopatía Grasa"
-                ]
+                archivos: []
             },
             "Endocrinología": {
                 icon: "🩺",
                 driveLink: "https://drive.google.com/drive/folders/1oK9pLhTuMW3V6AE19VZKsdpdcgUn4S04",
-                archivos: [
-                    "DM2 - Algoritmo 2026",
-                    "Disfunción Tiroidea",
-                    "Obesidad - Manejo"
-                ]
+                archivos: []
             },
             "Geriatría": {
                 icon: "👴",
                 driveLink: "https://drive.google.com/drive/folders/18I_nkhfeNCBl3MBRZPJb7N2ln-qaINQb",
-                archivos: [
-                    "Síndrome de Fragilidad",
-                    "Caídas - Prevención",
-                    "Deterioro Cognitivo"
-                ]
+                archivos: []
             },
             "Ginecología": {
                 icon: "🤰",
                 driveLink: "https://drive.google.com/drive/folders/1nnRb5AhieStNv_4Z5e2lm55JoBdn-6kp",
-                archivos: [
-                    "Anticoncepción - Guía",
-                    "Menopausia - Manejo",
-                    "Screening Cérvix"
-                ]
+                archivos: []
             },
             "Neurología": {
                 icon: "🧠",
                 driveLink: "https://drive.google.com/drive/folders/1HGMonqxxFpN7RYTcB5RC65AbGNmZn0sR",
-                archivos: [
-                    "Migraña - Cefaleas",
-                    "Ictus - Manejo",
-                    "Epilepsia - Protocolo"
-                ]
+                archivos: []
             },
             "Neumología": {
                 icon: "🫁",
                 driveLink: "https://drive.google.com/drive/folders/1NCHsfTTxBSVzbbLqi_c9iI33xKVhacFu",
-                archivos: [
-                    "EPOC - Guía",
-                    "Asma - Control",
-                    "Apnea del Sueño"
-                ]
+                archivos: []
             },
             "Pediatría": {
                 icon: "👶",
                 driveLink: "https://drive.google.com/drive/folders/1SUXQuRwuQooqdHZFRacSRK7inG7JRKwy",
-                archivos: [
-                    "Calendario - Vacunas",
-                    "Crecimiento - Desarrollo",
-                    "Nutrición Pediátrica"
-                ]
+                archivos: []
             },
             "Traumatología": {
                 icon: "🦴",
                 driveLink: "https://drive.google.com/drive/folders/1AiCxlDFPMdXLh8yFcpVHjspz_uTK506A",
-                archivos: [
-                    "Fractura de Cadera",
-                    "Dolor Lumbar",
-                    "Esguinces y Torceduras"
-                ]
+                archivos: []
             },
             "Urgencias": {
                 icon: "🚨",
                 driveLink: "https://drive.google.com/drive/folders/1F1Ghfvny1xcxmsOHyQEBeJa0-q6gZTHc",
-                archivos: [
-                    "Dolor Torácico",
-                    "Abdominal Agudo",
-                    "Disnea Aguda"
-                ]
+                archivos: []
             },
             "Violencia de Género": {
                 icon: "🚫",
                 driveLink: "https://drive.google.com/drive/folders/1dIQcvXXD0ezJCivtejXZwLkKz3Yz0Tm5",
-                archivos: [
-                    "Detección de Violencia",
-                    "Protocolo de Atención"
-                ]
+                archivos: []
             },
             "Dietas y Nutrición": {
                 icon: "🥗",
                 driveLink: "https://drive.google.com/drive/folders/1-z1Y9Z0bNPCh1_EndigVbCrFDllEJqG5",
-                archivos: [
-                    "Dieta Mediterránea",
-                    "Obesidad - Dietética",
-                    "Dislipemia - Nutrición"
-                ]
+                archivos: []
+            },
+            "Protocolos Médicos": {
+                icon: "📋",
+                driveLink: "https://drive.google.com/drive/folders/1P6ZpthCguIV2sx1arcqgHCWYfnrpgoJs",
+                archivos: []
+            },
+            "Formación": {
+                icon: "🎓",
+                driveLink: "https://drive.google.com/drive/folders/1EPwqQ9s_h8zUeQOUZA-L0uuGb9DKhbp7",
+                archivos: []
             }
         };
 
@@ -468,20 +427,20 @@
                         <div class="archivo-item">
                             <div class="archivo-nombre">
                                 <span>📄</span>
-                                <strong>${archivo}</strong>
+                                <strong>${archivo.nombre}</strong>
                             </div>
-                            <button class="archivo-btn" onclick="window.open('${categoria.driveLink}', '_blank')">
-                                📁 Ver en Drive
+                            <button class="archivo-btn" onclick="window.open('${archivo.enlace}', '_blank')">
+                                ⬇️ Descargar
                             </button>
                         </div>
                     `;
                 });
             } else {
-                html += '<p class="empty-message">No hay documentos disponibles en esta categoría</p>';
+                html += '<p style="text-align: center; padding: 30px; color: #0066cc; font-weight: 600;">📂 Acceder a todos los documentos de esta categoría en Google Drive</p>';
             }
             
             html += '</div>';
-            html += `<a href="${categoria.driveLink}" target="_blank" class="drive-folder-link">📁 Acceder a la carpeta completa</a>`;
+            html += `<a href="${categoria.driveLink}" target="_blank" class="drive-folder-link">📁 Abrir carpeta completa en Drive</a>`;
             
             cuerpo.innerHTML = html;
             modal.style.display = 'block';
