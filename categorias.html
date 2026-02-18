@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías Médicas - Cartagena Este</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        
+        .categoria-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .categoria-card:hover {
+            border-color: #0066cc;
+            box-shadow: 0 4px 12px rgba(0,102,204,0.15);
+            transform: translateY(-3px);
+        }
+        
+        .categoria-titulo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .categoria-count {
+            background: #0066cc;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: auto;
+        }
+        
+        .categoria-descripcion {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .categoria-icon {
+            font-size: 1.5rem;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .search-box {
+            max-width: 600px;
+            margin: 30px auto 0;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .search-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html" style="color: inherit; text-decoration: none;">Cartagena Este</a></h1>
+                    <p class="tagline">Portal de Información y Servicios</p>
+                </div>
+                <nav class="nav-toggle">
+                    <button class="menu-btn" id="menuBtn" aria-label="Menú">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="categorias.html" class="nav-link active">Categorías</a></li>
+                <li><a href="index.html#profesionales" class="nav-link">Profesionales</a></li>
+                <li><a href="index.html#pacientes" class="nav-link">Pacientes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="container">
+            <h1>📚 Categorías Médicas</h1>
+            <p>Archivo digital de recursos para la práctica clínica</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar categoría...">
+                <button onclick="buscarCategoria()">🔍 Buscar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <div class="categorias-grid" id="categoriasGrid">
+                <!-- Cargado dinámicamente -->
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cartagena Este</h3>
+                    <p>Portal de información y servicios para la comunidad</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Útiles</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="categorias.html">Categorías</a></li>
+                        <li><a href="index.html#profesionales">Profesionales</a></li>
+                        <li><a href="index.html#pacientes">Pacientes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Email: info@cartagenaeste.es</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cartagena Este. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Datos de categorías médicas
+        const categorias = [
+            {nombre: "Cardiología", icon: "❤️", count: 3, descripcion: "Patologías cardiovasculares, HTA, insuficiencia cardíaca"},
+            {nombre: "Dermatología", icon: "🩺", count: 3, descripcion: "Lesiones cutáneas, dermatitis, melanoma"},
+            {nombre: "Digestivo", icon: "🫁", count: 5, descripcion: "Patología gastrointestinal, hepática"},
+            {nombre: "Dietas", icon: "🥗", count: 13, descripcion: "Nutrición, planes alimentarios, obesidad"},
+            {nombre: "Endocrinología", icon: "🩺", count: 5, descripcion: "Diabetes, tiroides, metabolismo"},
+            {nombre: "Geriatría", icon: "👴", count: 5, descripcion: "Atención al anciano, síndromes geriátricos"},
+            {nombre: "Ginecología", icon: "🤰", count: 9, descripcion: "Salud de la mujer, embarazo, menopausia"},
+            {nombre: "Neurología", icon: "🧠", count: 7, descripcion: "Cefaleas, ictus, epilepsia, demencias"},
+            {nombre: "Neumología", icon: "🫁", count: 5, descripcion: "EPOC, asma, infecciones respiratorias"},
+            {nombre: "Pediatría", icon: "👶", count: 4, descripcion: "Salud infantil, vacunas, desarrollo"},
+            {nombre: "Traumatología", icon: "🦴", count: 1, descripcion: "Fracturas, esguinces, dolor musculoesquelético"},
+            {nombre: "Urgencias", icon: "🚨", count: 9, descripcion: "Manejo de urgencias en AP"},
+            {nombre: "Urología", icon: "🩺", count: 2, descripcion: "ITU, HBP, cólico renal"},
+            {nombre: "Reumatología", icon: "🦴", count: 4, descripcion: "Artritis, artrosis, enfermedades autoinmunes"},
+            {nombre: "Psiquiatría", icon: "🧠", count: 1, descripcion: "Depresión, ansiedad, salud mental"},
+            {nombre: "Oftalmología", icon: "👁️", count: 2, descripcion: "Patología ocular, glaucoma"},
+            {nombre: "ORL", icon: "👂", count: 1, descripcion: "Otitis, faringitis, vértigo"},
+            {nombre: "Nefrología", icon: "🩺", count: 2, descripcion: "Enfermedad renal crónica"},
+            {nombre: "Oncología", icon: "🎗️", count: 2, descripcion: "Cribado cáncer, manejo paliativo"},
+            {nombre: "Infecciosas", icon: "🦠", count: 1, descripcion: "VIH, tuberculosis, infecciones"},
+            {nombre: "Casos Clínicos", icon: "📋", count: 1, descripcion: "Casos reales comentados"},
+            {nombre: "Protocolos", icon: "📄", count: 1, descripcion: "Protocolos de actuación"},
+            {nombre: "Vacunas", icon: "💉", count: 1, descripcion: "Calendario vacunal, indicaciones"},
+            {nombre: "Violencia de Género", icon: "🚫", count: 1, descripcion: "Detección y abordaje VG"},
+            {nombre: "Recursos Sociales", icon: "🤝", count: 2, descripcion: "Ayudas, servicios sociales"},
+            {nombre: "Calculadoras", icon: "🧮", count: 1, descripcion: "Herramientas y calculadoras clínicas"},
+            {nombre: "Factores de Riesgo", icon: "⚠️", count: 2, descripcion: "Prevención cardiovascular"},
+            {nombre: "Dejar de Fumar", icon: "🚭", count: 1, descripcion: "Deshabituación tabáquica"},
+            {nombre: "Ejercicios", icon: "🏃", count: 2, descripcion: "Actividad física, prescripción ejercicio"},
+            {nombre: "Docencia", icon: "🎓", count: 0, descripcion: "Material docente, formación"},
+            {nombre: "Artículos", icon: "📰", count: 2, descripcion: "Artículos de interés"},
+            {nombre: "Enlaces de Interés", icon: "🔗", count: 2, descripcion: "Páginas web útiles"},
+        ];
+
+        // Renderizar categorías
+        function renderCategorias(filtro = '') {
+            const grid = document.getElementById('categoriasGrid');
+            const filtradas = filtro 
+                ? categorias.filter(c => c.nombre.toLowerCase().includes(filtro.toLowerCase()))
+                : categorias;
+            
+            grid.innerHTML = filtradas.map(cat => `
+                <div class="categoria-card" onclick="abrirCategoria('${cat.nombre}')">
+                    <div class="categoria-titulo">
+                        <span class="categoria-icon">${cat.icon}</span>
+                        <span>${cat.nombre}</span>
+                        <span class="categoria-count">${cat.count}</span>
+                    </div>
+                    <div class="categoria-descripcion">${cat.descripcion}</div>
+                </div>
+            `).join('');
+            
+            if (filtradas.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; padding: 40px; color: #999;">No se encontraron categorías</p>';
+            }
+        }
+
+        function buscarCategoria() {
+            const query = document.getElementById('searchInput').value;
+            renderCategorias(query);
+        }
+
+        function abrirCategoria(nombre) {
+            alert(`Próximamente: contenido de ${nombre}`);
+            // En el futuro, aquí cargarías el contenido de cada categoría
+        }
+
+        // Búsqueda en tiempo real
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategorias();
+            
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                renderCategorias(e.target.value);
+            });
+            
+            // Menú hamburguesa
+            document.getElementById('menuBtn')?.addEventListener('click', () => {
+                document.getElementById('mainNav').classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
