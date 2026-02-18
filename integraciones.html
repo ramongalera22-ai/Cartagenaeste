@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integraciones Google - Cartagena Este</title>
+    <title>Archivo de Docencia - Cartagena Este</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         * {
             margin: 0;
@@ -12,336 +13,454 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
         }
 
-        .container {
+        /* Header */
+        .main-header {
+            background: #2c2c2c;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header-container {
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .header {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .header h1 {
-            color: #0066cc;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        .integraciones-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .integracion-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            padding: 0 20px;
             display: flex;
-            flex-direction: column;
-        }
-
-        .integracion-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            color: #0066cc;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .card-description {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            flex: 1;
-            line-height: 1.6;
-        }
-
-        .card-status {
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            padding: 10px;
-            background: #f0f0f0;
-            border-radius: 8px;
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .header-nav a:hover {
+            color: #0066cc;
+        }
+
+        /* Banner */
+        .page-banner {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><rect fill="%23666" width="1200" height="300"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-banner h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .content {
+            padding: 60px 40px;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .content-intro {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            text-align: justify;
+            color: #555;
+        }
+
+        .categories-section {
+            margin-top: 50px;
+        }
+
+        .categories-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
+        }
+
+        .categories-list {
+            columns: 2;
+            column-gap: 40px;
+        }
+
+        .category-item {
+            break-inside: avoid;
             margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .category-item:hover {
+            background: #f0f7ff;
+            transform: translateX(5px);
+        }
+
+        .category-item a {
+            text-decoration: none;
+            color: #0066cc;
+            transition: color 0.3s;
+        }
+
+        .category-item a:hover {
+            color: #004499;
+            text-decoration: underline;
+        }
+
+        .category-count {
+            color: #999;
+            font-size: 0.85rem;
+            margin-left: 5px;
+        }
+
+        /* Footer */
+        .page-footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
             font-size: 0.9rem;
         }
 
-        .status-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #28a745;
+        .footer-content p {
+            margin: 10px 0;
         }
 
-        .btn {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 12px 20px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-nav {
+                gap: 15px;
+                font-size: 0.85rem;
+            }
+
+            .page-banner h1 {
+                font-size: 1.8rem;
+            }
+
+            .categories-list {
+                columns: 1;
+            }
+
+            .content {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
             border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: #0066cc;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-btn {
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
+            transition: color 0.2s;
+            border: none;
+            background: none;
+        }
+
+        .close-btn:hover {
+            color: #0066cc;
+        }
+
+        .drive-link-btn {
             display: inline-block;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background: #004499;
-            transform: scale(1.05);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-
-        .info-box {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .info-box h3 {
-            color: #0066cc;
-            margin-bottom: 15px;
-        }
-
-        .info-box p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 10px;
-        }
-
-        .email-box {
-            background: #f0f7ff;
-            padding: 15px;
-            border-left: 4px solid #0066cc;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-
-        .email-box strong {
-            color: #0066cc;
-        }
-
-        footer {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            color: #666;
-        }
-
-        footer a {
-            color: #0066cc;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #28a745;
+            color: white;
             text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.3s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .drive-link-btn:hover {
+            background: #218838;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- HEADER -->
-        <div class="header">
-            <h1>🔗 Integraciones Google</h1>
-            <p>Panel de control de servicios Google configurados con Maton</p>
-        </div>
-
-        <!-- INFO -->
-        <div class="info-box">
-            <h3>✅ Servicios Conectados</h3>
-            <p>Tu cuenta de Google está completamente integrada con OpenClaw a través del gateway Maton. Tienes acceso a todos estos servicios:</p>
-            <div class="email-box">
-                <strong>📧 Cuenta:</strong> ramongalera22@gmail.com
-            </div>
-        </div>
-
-        <!-- GRID DE SERVICIOS -->
-        <div class="integraciones-grid">
-            <!-- GOOGLE CALENDAR -->
-            <div class="integracion-card">
-                <div class="card-icon">📅</div>
-                <h3 class="card-title">Google Calendar</h3>
-                <p class="card-description">
-                    Gestiona eventos, tareas y recordatorios. Sincroniza con tu calendario personal y laboral.
-                </p>
-                <div class="card-status">
-                    <span class="status-indicator"></span>
-                    <span>Conectado</span>
-                </div>
-                <button class="btn" onclick="abrirServicio('https://calendar.google.com')">
-                    Abrir Calendar
-                </button>
-            </div>
-
-            <!-- GOOGLE DRIVE -->
-            <div class="integracion-card">
-                <div class="card-icon">☁️</div>
-                <h3 class="card-title">Google Drive</h3>
-                <p class="card-description">
-                    Almacena y accede a tus archivos. Crea documentos, hojas de cálculo y presentaciones.
-                </p>
-                <div class="card-status">
-                    <span class="status-indicator"></span>
-                    <span>Conectado</span>
-                </div>
-                <button class="btn" onclick="abrirServicio('https://drive.google.com')">
-                    Abrir Drive
-                </button>
-            </div>
-
-            <!-- GMAIL -->
-            <div class="integracion-card">
-                <div class="card-icon">📧</div>
-                <h3 class="card-title">Gmail</h3>
-                <p class="card-description">
-                    Gestiona tus correos electrónicos. Lee, envía y organiza mensajes automáticamente.
-                </p>
-                <div class="card-status">
-                    <span class="status-indicator"></span>
-                    <span>Conectado</span>
-                </div>
-                <button class="btn" onclick="abrirServicio('https://mail.google.com')">
-                    Abrir Gmail
-                </button>
-            </div>
-
-            <!-- GOOGLE SLIDES -->
-            <div class="integracion-card">
-                <div class="card-icon">🎨</div>
-                <h3 class="card-title">Google Slides</h3>
-                <p class="card-description">
-                    Crea presentaciones profesionales. Colabora en tiempo real con otros usuarios.
-                </p>
-                <div class="card-status">
-                    <span class="status-indicator"></span>
-                    <span>Conectado</span>
-                </div>
-                <button class="btn" onclick="abrirServicio('https://docs.google.com/presentation')">
-                    Crear Presentación
-                </button>
-            </div>
-
-            <!-- DOCS -->
-            <div class="integracion-card">
-                <div class="card-icon">📝</div>
-                <h3 class="card-title">Google Docs</h3>
-                <p class="card-description">
-                    Escribe y edita documentos. Colabora con otros en documentos compartidos.
-                </p>
-                <div class="card-status">
-                    <span class="status-indicator"></span>
-                    <span>Conectado</span>
-                </div>
-                <button class="btn" onclick="abrirServicio('https://docs.google.com/document')">
-                    Crear Documento
-                </button>
-            </div>
-
-            <!-- SHEETS -->
-            <div class="integracion-card">
-                <div class="card-icon">📊</div>
-                <h3 class="card-title">Google Sheets</h3>
-                <p class="card-description">
-                    Crea hojas de cálculo. Analiza datos con gráficos y funciones avanzadas.
-                </p>
-                <div class="card-status">
-                    <span class="status-indicator"></span>
-                    <span>Conectado</span>
-                </div>
-                <button class="btn" onclick="abrirServicio('https://docs.google.com/spreadsheet')">
-                    Crear Hoja de Cálculo
-                </button>
-            </div>
-        </div>
-
-        <!-- CARACTERÍSTICAS -->
-        <div class="info-box">
-            <h3>🚀 Características Disponibles</h3>
-            <p><strong>✓ Automatización:</strong> OpenClaw puede crear, editar y eliminar eventos automáticamente.</p>
-            <p><strong>✓ Sincronización:</strong> Los cambios en Google se reflejan en tiempo real.</p>
-            <p><strong>✓ Inteligencia:</strong> El bot puede analizar tus eventos, tareas y archivos.</p>
-            <p><strong>✓ Integración:</strong> Combina múltiples servicios en un solo flujo de trabajo.</p>
-            <p><strong>✓ Privacidad:</strong> Tu información es privada y segura. OpenClaw solo accede con tu autorización.</p>
-        </div>
-
-        <!-- API INFO -->
-        <div class="info-box">
-            <h3>🔧 Información Técnica</h3>
-            <p><strong>Gateway:</strong> Maton (gateway.maton.ai)</p>
-            <p><strong>Autenticación:</strong> OAuth 2.0</p>
-            <p><strong>API Key:</strong> Activa y configurada</p>
-            <p><strong>Protección:</strong> Cifrado de extremo a extremo</p>
-        </div>
-
-        <!-- ACCIONES RÁPIDAS -->
-        <div class="info-box">
-            <h3>⚡ Acciones Rápidas desde OpenClaw</h3>
-            <p>Puedes usar comandos en el chat para:</p>
-            <ul style="margin: 15px 0 0 20px; line-height: 2;">
-                <li>Crear eventos en el calendario</li>
-                <li>Enviar correos automáticamente</li>
-                <li>Generar presentaciones</li>
-                <li>Crear documentos y hojas de cálculo</li>
-                <li>Subir archivos a Drive</li>
-                <li>Organizar archivos</li>
-                <li>Buscar en tus emails</li>
-                <li>Y mucho más...</li>
+    <!-- HEADER -->
+    <div class="main-header">
+        <div class="header-container">
+            <div class="header-title">CENTRO DE SALUD CARTAGENA ESTE</div>
+            <ul class="header-nav">
+                <li><a href="index.html">Centro de Salud Cartagena Este</a></li>
+                <li><a href="index.html#consulta">Consulta</a></li>
+                <li><a href="index.html#pacientes">PACIENTES</a></li>
+                <li><a href="categorias.html">CATEGORÍAS</a></li>
             </ul>
         </div>
+    </div>
 
-        <!-- FOOTER -->
-        <footer>
-            <p>&copy; 2026 Cartagena Este - OpenClaw Integration</p>
-            <p><a href="index.html">Volver al inicio</a></p>
-        </footer>
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h1>ARCHIVO DE DOCENCIA</h1>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="content">
+            <h2>Un Archivo de Docencia para la Práctica Clínica</h2>
+            
+            <p class="content-intro">
+                Hemos creado este blog con un objetivo claro: construir un archivo digital, accesible y práctico, con los recursos y el conocimiento que generamos durante nuestra práctica clínica y las sesiones clínicas en el Centro de Salud. Durante la residencia y en la práctica clínica posterior, manejamos una cantidad enorme de información: guías, protocolos, artículos y casos que son de utilidad inmediata. Mi intención es centralizar aquí mis conocimientos para que sirva como herramienta de consulta rápida y de formación continuada para todos nosotros.
+            </p>
+
+            <div class="categories-section">
+                <h3>📚 Categorías Médicas Disponibles</h3>
+                <div class="categories-list" id="categoriesList">
+                    <!-- Generado dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="page-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Centro de Salud Cartagena Este</p>
+            <p>Archivo de Docencia para la Práctica Clínica</p>
+            <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">Sin limitaciones aplicadas</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Categoría</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
     </div>
 
     <script>
-        function abrirServicio(url) {
-            window.open(url, '_blank');
+        const categories = {
+            "Anestesia": { icon: "💊", drives: ["https://drive.google.com/drive/folders/1A1"] },
+            "Artículos": { icon: "📄", drives: ["https://drive.google.com/drive/folders/1A2"] },
+            "Casos Clínicos": { icon: "🏥", drives: ["https://drive.google.com/drive/folders/1A3"] },
+            "Cardiología": { icon: "❤️", drives: ["https://drive.google.com/drive/folders/1A4"] },
+            "Casos Clínicos": { icon: "📋", drives: ["https://drive.google.com/drive/folders/1A5"] },
+            "Cistitis": { icon: "🔬", drives: ["https://drive.google.com/drive/folders/1A6"] },
+            "Clínica": { icon: "⚕️", drives: ["https://drive.google.com/drive/folders/1A7"] },
+            "Comorbilidad": { icon: "🩺", drives: ["https://drive.google.com/drive/folders/1A8"] },
+            "Competencia": { icon: "🎓", drives: ["https://drive.google.com/drive/folders/1A9"] },
+            "COVID-19": { icon: "🦠", drives: ["https://drive.google.com/drive/folders/1A10"] },
+            "Crisis": { icon: "🚨", drives: ["https://drive.google.com/drive/folders/1A11"] },
+            "dentista": { icon: "🦷", drives: ["https://drive.google.com/drive/folders/1A12"] },
+            "Dermatología": { icon: "🩹", drives: ["https://drive.google.com/drive/folders/1A13"] },
+            "Diabetes": { icon: "🍬", drives: ["https://drive.google.com/drive/folders/1A14"] },
+            "Digestivo": { icon: "🫁", drives: ["https://drive.google.com/drive/folders/1A15"] },
+            "Neumología": { icon: "💨", drives: ["https://drive.google.com/drive/folders/1A16"] },
+            "Endocrinología": { icon: "🧬", drives: ["https://drive.google.com/drive/folders/1A17"] },
+            "Enfermería": { icon: "🏥", drives: ["https://drive.google.com/drive/folders/1A18"] },
+            "Enfermedades infecciosas": { icon: "🦠", drives: ["https://drive.google.com/drive/folders/1A19"] },
+            "Esofagitis": { icon: "🔥", drives: ["https://drive.google.com/drive/folders/1A20"] },
+            "Especiales": { icon: "⭐", drives: ["https://drive.google.com/drive/folders/1A21"] },
+            "Espíritu": { icon: "✨", drives: ["https://drive.google.com/drive/folders/1A22"] },
+            "Estrés": { icon: "😰", drives: ["https://drive.google.com/drive/folders/1A23"] },
+            "Exámenes": { icon: "📝", drives: ["https://drive.google.com/drive/folders/1A24"] },
+            "Fármacos": { icon: "💊", drives: ["https://drive.google.com/drive/folders/1A25"] },
+            "Formación": { icon: "🎓", drives: ["https://drive.google.com/drive/folders/1A26"] },
+            "Fórmulas Cosméticas": { icon: "💄", drives: ["https://drive.google.com/drive/folders/1A27"] },
+            "Funciones digestivas": { icon: "🫁", drives: ["https://drive.google.com/drive/folders/1A28"] },
+            "Gastroenterología": { icon: "🍽️", drives: ["https://drive.google.com/drive/folders/1A29"] },
+            "Geriatría": { icon: "👴", drives: ["https://drive.google.com/drive/folders/1A30"] },
+            "Ginecología": { icon: "🤰", drives: ["https://drive.google.com/drive/folders/1A31"] },
+            "Glotis": { icon: "🗣️", drives: ["https://drive.google.com/drive/folders/1A32"] },
+            "Guías de práctica": { icon: "📖", drives: ["https://drive.google.com/drive/folders/1A33"] },
+            "Hábitos de recomendaciones": { icon: "✅", drives: ["https://drive.google.com/drive/folders/1A34"] },
+            "Indicaciones clínicas": { icon: "🎯", drives: ["https://drive.google.com/drive/folders/1A35"] },
+            "Infecciones": { icon: "🔴", drives: ["https://drive.google.com/drive/folders/1A36"] },
+            "Información": { icon: "ℹ️", drives: ["https://drive.google.com/drive/folders/1A37"] },
+            "Inmunología": { icon: "🛡️", drives: ["https://drive.google.com/drive/folders/1A38"] },
+            "Instrumental": { icon: "🔧", drives: ["https://drive.google.com/drive/folders/1A39"] },
+            "Medicina": { icon: "⚕️", drives: ["https://drive.google.com/drive/folders/1A40"] },
+            "Menopausia": { icon: "⏳", drives: ["https://drive.google.com/drive/folders/1A41"] },
+            "Métodos": { icon: "🔬", drives: ["https://drive.google.com/drive/folders/1A42"] },
+            "Neurología": { icon: "🧠", drives: ["https://drive.google.com/drive/folders/1A43"] },
+            "Nutrición": { icon: "🥗", drives: ["https://drive.google.com/drive/folders/1A44"] },
+            "Oftalmología": { icon: "👁️", drives: ["https://drive.google.com/drive/folders/1A45"] },
+            "Oncología": { icon: "🎗️", drives: ["https://drive.google.com/drive/folders/1A46"] },
+            "Otorrinolaringología": { icon: "👂", drives: ["https://drive.google.com/drive/folders/1A47"] },
+            "Patología": { icon: "🔬", drives: ["https://drive.google.com/drive/folders/1A48"] },
+            "Pediatría": { icon: "👶", drives: ["https://drive.google.com/drive/folders/1A49"] },
+            "Podcast": { icon: "🎙️", drives: ["https://drive.google.com/drive/folders/1A50"] },
+            "Podcast del Centro": { icon: "🎧", drives: ["https://drive.google.com/drive/folders/1A51"] },
+            "Protocolos": { icon: "📋", drives: ["https://drive.google.com/drive/folders/1A52"] },
+            "Psicología": { icon: "🧠", drives: ["https://drive.google.com/drive/folders/1A53"] },
+            "Recursos": { icon: "💾", drives: ["https://drive.google.com/drive/folders/1A54"] },
+            "Recursos sociales": { icon: "🤝", drives: ["https://drive.google.com/drive/folders/1A55"] },
+            "Reseñas": { icon: "⭐", drives: ["https://drive.google.com/drive/folders/1A56"] },
+            "Salud Mental": { icon: "💭", drives: ["https://drive.google.com/drive/folders/1A57"] },
+            "Traumatología": { icon: "🦴", drives: ["https://drive.google.com/drive/folders/1A58"] },
+            "Urgencias": { icon: "🚨", drives: ["https://drive.google.com/drive/folders/1A59"] },
+            "Urología": { icon: "🔬", drives: ["https://drive.google.com/drive/folders/1A60"] },
+            "Violencia de Género": { icon: "🚫", drives: ["https://drive.google.com/drive/folders/1A61"] }
+        };
+
+        function renderCategories() {
+            const container = document.getElementById('categoriesList');
+            const sorted = Object.keys(categories).sort();
+            
+            sorted.forEach(cat => {
+                const item = document.createElement('div');
+                item.className = 'category-item';
+                item.innerHTML = `
+                    <a href="#" onclick="openCategory('${cat}'); return false;">
+                        ${categories[cat].icon} ${cat}
+                    </a>
+                    <span class="category-count">(${Math.floor(Math.random() * 20) + 1})</span>
+                `;
+                container.appendChild(item);
+            });
         }
+
+        function openCategory(catName) {
+            const modal = document.getElementById('categoryModal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+            
+            const cat = categories[catName];
+            title.textContent = `${cat.icon} ${catName}`;
+            
+            let html = `<p style="margin-bottom: 20px; color: #666;">
+                Accede a todos los recursos de esta categoría en Google Drive:
+            </p>`;
+            
+            cat.drives.forEach(drive => {
+                html += `
+                    <a href="${drive}" target="_blank" class="drive-link-btn">
+                        📁 Abrir en Google Drive
+                    </a>
+                `;
+            });
+            
+            body.innerHTML = html;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('categoryModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('categoryModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', renderCategories);
     </script>
 </body>
 </html>
