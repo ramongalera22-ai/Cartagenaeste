@@ -343,7 +343,10 @@
             </p>
 
             <div class="categories-section">
-                <h3>📚 Recursos Médicos - Acceso a Google Drive</h3>
+                <h3>📚 Recursos Médicos Verificados</h3>
+                <p style="color: #666; font-size: 0.95rem; margin-bottom: 20px;">
+                    ✅ 57 archivos verificados en 11 categorías (49 PDFs + 8 formatos adicionales)
+                </p>
                 <div class="categories-list" id="categoriesList">
                     <!-- Generado dinámicamente -->
                 </div>
@@ -375,82 +378,83 @@
 
     <script>
         const categories = {
-            // PROFESIONALES
+            // PROFESIONALES - CON ARCHIVOS
             "Cardiología": {
                 icon: "❤️",
                 driveId: "14lhUUrY8AEuHkh_DfRzR91q6Qvv1s2aF",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 4,
+                tipo: "PDF"
             },
             "Dermatología": {
                 icon: "🩹",
                 driveId: "1Cy0aVyWYy3aiIz08ieVNzp4wfLXlele1",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 7,
+                tipo: "PDF"
             },
             "Digestivo": {
                 icon: "🫁",
                 driveId: "1vZov17ySOB6utqEUO7lve8sZ8DPJI6cL",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 3,
+                tipo: "PDF"
             },
             "Endocrinología": {
                 icon: "🧬",
                 driveId: "1oK9pLhTuMW3V6AE19VZKsdpdcgUn4S04",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 6,
+                tipo: "PDF"
             },
             "Geriatría": {
                 icon: "👴",
                 driveId: "18I_nkhfeNCBl3MBRZPJb7N2ln-qaINQb",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 5,
+                tipo: "PPTX"
             },
             "Ginecología": {
                 icon: "🤰",
                 driveId: "1nnRb5AhieStNv_4Z5e2lm55JoBdn-6kp",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 8,
+                tipo: "PDF"
             },
             "Neurología": {
                 icon: "🧠",
                 driveId: "1HGMonqxxFpN7RYTcB5RC65AbGNmZn0sR",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 7,
+                tipo: "PDF"
             },
             "Neumología": {
                 icon: "💨",
                 driveId: "1NCHsfTTxBSVzbbLqi_c9iI33xKVhacFu",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 4,
+                tipo: "PDF"
             },
             "Pediatría": {
                 icon: "👶",
                 driveId: "1SUXQuRwuQooqdHZFRacSRK7inG7JRKwy",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 4,
+                tipo: "PDF"
             },
             "Traumatología": {
                 icon: "🦴",
                 driveId: "1AiCxlDFPMdXLh8yFcpVHjspz_uTK506A",
-                section: "PROFESIONALES"
-            },
-            "Urgencias": {
-                icon: "🚨",
-                driveId: "1F1Ghfvny1xcxmsOHyQEBeJa0-q6gZTHc",
-                section: "PROFESIONALES"
+                section: "PROFESIONALES",
+                archivos: 2,
+                tipo: "ZIP"
             },
             "Protocolos Médicos": {
                 icon: "📋",
                 driveId: "1P6ZpthCguIV2sx1arcqgHCWYfnrpgoJs",
-                section: "PROFESIONALES"
-            },
-            "Formación": {
-                icon: "🎓",
-                driveId: "1EPwqQ9s_h8zUeQOUZA-L0uuGb9DKhbp7",
-                section: "PROFESIONALES"
-            },
-            // PACIENTES
-            "Violencia de Género": {
-                icon: "🚫",
-                driveId: "1dIQcvXXD0ezJCivtejXZwLkKz3Yz0Tm5",
-                section: "PACIENTES"
-            },
-            "Dietas y Nutrición": {
-                icon: "🥗",
-                driveId: "1-z1Y9Z0bNPCh1_EndigVbCrFDllEJqG5",
-                section: "PACIENTES"
+                section: "PROFESIONALES",
+                archivos: 7,
+                tipo: "PDF"
             }
         };
 
@@ -462,11 +466,12 @@
                 const item = document.createElement('div');
                 item.className = 'category-item';
                 const data = categories[cat];
+                const tipoEmoji = data.tipo === 'PDF' ? '📄' : data.tipo === 'PPTX' ? '🎬' : '📦';
                 item.innerHTML = `
                     <button onclick="openCategory('${cat}')">
                         ${data.icon} ${cat}
                     </button>
-                    <span class="category-count">(📂 Drive)</span>
+                    <span class="category-count">${tipoEmoji} ${data.archivos}</span>
                 `;
                 container.appendChild(item);
             });
