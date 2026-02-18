@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías Médicas con Documentos - Cartagena Este</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        
+        .categoria-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .categoria-card:hover {
+            border-color: #0066cc;
+            box-shadow: 0 4px 12px rgba(0,102,204,0.15);
+            transform: translateY(-3px);
+        }
+        
+        .categoria-titulo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .categoria-icon {
+            font-size: 1.5rem;
+        }
+        
+        .documentos-list {
+            margin-top: 15px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 12px;
+        }
+        
+        .documento-item {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        
+        .documento-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .documento-nombre {
+            color: #333;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        
+        .documento-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s ease;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+        
+        .documento-btn:hover {
+            background: #0052a3;
+        }
+        
+        .doc-count {
+            background: #0066cc;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: auto;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .search-box {
+            max-width: 600px;
+            margin: 30px auto 0;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .search-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .stats {
+            text-align: center;
+            padding: 20px 0;
+            color: #666;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html" style="color: inherit; text-decoration: none;">Cartagena Este</a></h1>
+                    <p class="tagline">Portal de Información y Servicios</p>
+                </div>
+                <nav class="nav-toggle">
+                    <button class="menu-btn" id="menuBtn" aria-label="Menú">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="categorias.html" class="nav-link">Categorías</a></li>
+                <li><a href="categorias-docs.html" class="nav-link active">Documentos</a></li>
+                <li><a href="index.html#profesionales" class="nav-link">Profesionales</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="container">
+            <h1>📚 Documentos Médicos Descargables</h1>
+            <p>Recursos y guías para la práctica clínica</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar documento...">
+                <button onclick="buscar()">🔍</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <div class="stats">
+                <p id="statsText"></p>
+            </div>
+            <div class="categorias-grid" id="categoriasGrid">
+                <!-- Cargado dinámicamente -->
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cartagena Este</h3>
+                    <p>Portal de información y servicios para la comunidad</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Útiles</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="categorias.html">Categorías</a></li>
+                        <li><a href="categorias-docs.html">Documentos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Email: info@cartagenaeste.es</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cartagena Este. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Datos de documentos por categoría
+        const documentos = {
+            "Cardiologia": {
+                icon: "❤️",
+                docs: [
+                    "HTA-Manejo-AP.pdf",
+                    "Insuficiencia-Cardiaca-Guia.pdf",
+                    "Cardiopatia-Isquemica.pdf"
+                ]
+            },
+            "Dermatologia": {
+                icon: "🩺",
+                docs: [
+                    "Dermatitis-Atopica.pdf",
+                    "Psoriasis-Tratamiento.pdf",
+                    "Infecciones-Fungicas.pdf"
+                ]
+            },
+            "Digestivo": {
+                icon: "🫁",
+                docs: [
+                    "ERGE-Reflujo.pdf",
+                    "SII-Sindrome-Intestino-Irritable.pdf",
+                    "Hepatopatia-Grasa.pdf"
+                ]
+            },
+            "Endocrinologia": {
+                icon: "🩺",
+                docs: [
+                    "DM2-Algoritmo-2026.pdf",
+                    "Disfuncion-Tiroidea.pdf",
+                    "Obesidad-Manejo.pdf"
+                ]
+            },
+            "Geriatria": {
+                icon: "👴",
+                docs: [
+                    "Sindrome-Fragilidad.pdf",
+                    "Caidas-Prevencion.pdf",
+                    "Deterioro-Cognitivo.pdf"
+                ]
+            },
+            "Ginecologia": {
+                icon: "🤰",
+                docs: [
+                    "Anticoncepcion-Guia.pdf",
+                    "Menopausia-Manejo.pdf",
+                    "Screening-Cervix.pdf"
+                ]
+            },
+            "Neurologia": {
+                icon: "🧠",
+                docs: [
+                    "Migrana-Cefaleas.pdf",
+                    "Ictus-Manejo.pdf",
+                    "Epilepsia-Protocolo.pdf"
+                ]
+            },
+            "Neumologia": {
+                icon: "🫁",
+                docs: [
+                    "EPOC-Guia.pdf",
+                    "Asma-Control.pdf",
+                    "Apnea-Sueno.pdf"
+                ]
+            },
+            "Pediatria": {
+                icon: "👶",
+                docs: [
+                    "Calendario-Vacunas.pdf",
+                    "Crecimiento-Desarrollo.pdf",
+                    "Nutricion-Pediatrica.pdf"
+                ]
+            },
+            "Traumatologia": {
+                icon: "🦴",
+                docs: [
+                    "Fractura-Cadera.pdf",
+                    "Dolor-Lumbar.pdf",
+                    "Esguinces-Torceduras.pdf"
+                ]
+            },
+            "Urgencias": {
+                icon: "🚨",
+                docs: [
+                    "Dolor-Toracico.pdf",
+                    "Abdominal-Agudo.pdf",
+                    "Disnea-Aguda.pdf"
+                ]
+            },
+            "Violencia de Genero": {
+                icon: "🚫",
+                docs: [
+                    "Deteccion-Violencia.pdf",
+                    "Protocolo-Atencion.pdf"
+                ]
+            },
+            "Dietas y Nutricion": {
+                icon: "🥗",
+                docs: [
+                    "Dieta-Mediterranea.pdf",
+                    "Obesidad-Dietetica.pdf",
+                    "Dislipemia-Nutricion.pdf"
+                ]
+            }
+        };
+
+        function formatearNombre(nombre) {
+            return nombre.replace(/-/g, ' ').replace('.pdf', '');
+        }
+
+        function obtenerUrlDescarga(categoria, doc) {
+            return `https://ramongalera22-ai.github.io/Cartagenaeste/pdfs/${categoria.replace(' ', '_').toLowerCase()}/${doc}`;
+        }
+
+        function renderizarDocumentos(filtro = '') {
+            const grid = document.getElementById('categoriasGrid');
+            const filtroLower = filtro.toLowerCase();
+            
+            let totalDocs = 0;
+            let html = '';
+
+            for (const [cat, data] of Object.entries(documentos).sort()) {
+                const docsFiltrados = data.docs.filter(d => 
+                    cat.toLowerCase().includes(filtroLower) || 
+                    d.toLowerCase().includes(filtroLower)
+                );
+
+                if (docsFiltrados.length === 0 && filtro) continue;
+
+                totalDocs += data.docs.length;
+
+                html += `
+                    <div class="categoria-card">
+                        <div class="categoria-titulo">
+                            <span class="categoria-icon">${data.icon}</span>
+                            <span>${cat}</span>
+                            <span class="doc-count">${data.docs.length}</span>
+                        </div>
+                        <div class="documentos-list">
+                `;
+
+                data.docs.forEach(doc => {
+                    const nombreFormato = formatearNombre(doc);
+                    const url = obtenerUrlDescarga(cat, doc);
+                    
+                    html += `
+                        <div class="documento-item">
+                            <span class="documento-nombre">📄 ${nombreFormato}</span>
+                            <a href="${url}" target="_blank" class="documento-btn">Descargar</a>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (!html) {
+                html = '<div class="no-results"><p>No se encontraron documentos</p></div>';
+            }
+
+            grid.innerHTML = html;
+
+            // Actualizar estadísticas
+            const stats = `<strong>${Object.keys(documentos).length}</strong> categorías | <strong>${totalDocs}</strong> documentos disponibles`;
+            document.getElementById('statsText').innerHTML = stats;
+        }
+
+        function buscar() {
+            const query = document.getElementById('searchInput').value;
+            renderizarDocumentos(query);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarDocumentos();
+            
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                renderizarDocumentos(e.target.value);
+            });
+
+            // Menú hamburguesa
+            document.getElementById('menuBtn')?.addEventListener('click', () => {
+                document.getElementById('mainNav').classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
