@@ -4743,6 +4743,17 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){var im=docu
 document.addEventListener("DOMContentLoaded",function(){
     initLoginSession();
     renderPatients();
+
+    // ── Recarga Firebase cada 30s ──
+    setInterval(function(){
+        try{ loadGroqKeyFromFirestore(); }catch(e){}
+        try{
+            var user = firebase.auth().currentUser;
+            if(user){ checkAdminStatus(); updateModBadgeAll(); }
+        }catch(e){}
+        try{ updateModBadgeAll(); }catch(e){}
+        console.log('[Firebase] Recarga periódica 30s');
+    }, 30000);
     var p=new URLSearchParams(window.location.search);
     if(p.get("view")==="professionals"||p.get("category"))showPage("pageProfessionals");
     else if(p.get("view")==="patients")showPage("pagePatients");
