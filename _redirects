@@ -1,3 +1,0 @@
-# Redirect old GitHub Pages paths to Netlify root
-/Cartagenaeste/*  /:splat  301
-/cartagenaeste/*  /:splat  301
